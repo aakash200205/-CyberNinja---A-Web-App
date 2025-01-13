@@ -1,0 +1,53 @@
+<%- include('../common/head',{pageTitle : 'Signup'})  %>
+<link rel="stylesheet" href="/style/forms.css">
+<link rel="stylesheet" href="/style/authentication.css">
+</head>
+<body>
+    <%- include('../common/header') %>
+    <main>
+        <h1>Create New Account</h1>
+        <% if(inputData.errorMessage){ %>
+            <section class="alert">
+                <h2>Invalid Input</h2>
+                <p><%= inputData.errorMessage %></p>
+            </section>
+        <% }  %>
+        <form action="/signup" method="POST">
+        <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+            <p>
+                <label for="email">E-Mail:</label>
+                <input type="email" id="email" name="email" value="<%= inputData.email %>" required>
+            </p>
+            <p>
+                <label for="password">Password:</label>
+                <input type="password" id="passsword" name="password" minlength="6" value="<%= inputData.passsword %>" required>
+            </p>
+            <p>
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirmPasword" minlength="6" value="<%= inputData.confirmPasssword %>" required>
+            </p>
+            <hr>
+            <p>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="fullname" value="<%= inputData.fullname %>" required>
+            </p>
+            <p>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" value="<%= inputData.address %>" required>
+            </p>
+            <p>
+                <label for="pincode">Pin-Code:</label>
+                <input type="text" id="pincode" name="pincode" minlength="6" maxlength="6" value="<%= inputData.pincode %>" required>
+            </p>
+            <p>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" value="<%= inputData.city %>" required>
+            </p>
+            <button class="button">Create Account</button>
+            <p id="switchPage"><a href="/login">Already have an account ? Login</a></p>
+        </form>
+    </main>
+
+
+
+<%-include('../common/footer')%>
